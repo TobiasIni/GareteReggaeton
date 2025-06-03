@@ -13,6 +13,7 @@ export default async function Home() {
   return (
     <div className="space-y-8">
       <Hero />
+      <span className="section-spacing">Hola</span>
       <div className="section-spacing">
         <EventsCalendar />
         <div className="section-spacing grid grid-cols-1 md:grid-cols-2 gap-6">
