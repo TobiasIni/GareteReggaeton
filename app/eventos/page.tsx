@@ -11,9 +11,9 @@ export default async function EventsPage() {
   return (
     <div className="container mx-auto px-4 py-16">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Próximos Eventos</h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          No te pierdas nuestras próximas fiestas. Consulta el calendario y asegura tu entrada.
+        <h1 className="text-4xl font-bold mb-4 text-white">Próximos Eventos</h1>
+        <p className="text-muted-foreground max-w-2xl mx-auto text-white">
+          Nuestras fiestas
         </p>
       </div>
 
@@ -32,7 +32,7 @@ export default async function EventsPage() {
       )}
 
       <div className="section-spacing">
-        <span className="text-2xl font-bold">Opcion 1 Eventos</span>
+        <span className="text-2xl font-bold text-white">Opcion 1 Eventos</span>
         <EventsCalendar />
       </div>
 

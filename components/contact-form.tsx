@@ -24,10 +24,8 @@ export function ContactForm() {
     try {
       // Aquí iría la lógica real de envío
       await new Promise((resolve) => setTimeout(resolve, 1500))
-      setIsSuccess(true)(
-        // Resetear el formulario
-        event.target as HTMLFormElement,
-      ).reset()
+      setIsSuccess(true)
+      ;(event.target as HTMLFormElement).reset()
     } catch (err) {
       setError("Ha ocurrido un error al enviar el mensaje. Por favor, inténtalo de nuevo.")
     } finally {
@@ -36,40 +34,66 @@ export function ContactForm() {
   }
 
   return (
-    <Card className="glass-card">
+    <Card className="bg-black text-white border-red-600">
       <CardHeader>
-        <CardTitle>Contacta con nosotros</CardTitle>
-        <CardDescription>Envíanos un mensaje y te responderemos lo antes posible.</CardDescription>
+        <CardTitle className="text-white">Contacta con nosotros</CardTitle>
+        <CardDescription className="text-gray-400">Envíanos un mensaje y te responderemos lo antes posible.</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Nombre</Label>
-              <Input id="name" name="name" required />
+              <Label htmlFor="name" className="text-white">Nombre</Label>
+              <Input 
+                id="name" 
+                name="name" 
+                required 
+                className="bg-black border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
+              />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" name="email" type="email" required />
+              <Label htmlFor="email" className="text-white">Email</Label>
+              <Input 
+                id="email" 
+                name="email" 
+                type="email" 
+                required 
+                className="bg-black border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
+              />
             </div>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="subject">Asunto</Label>
-            <Input id="subject" name="subject" required />
+            <Label htmlFor="subject" className="text-white">Asunto</Label>
+            <Input 
+              id="subject" 
+              name="subject" 
+              required 
+              className="bg-black border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
+            />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="message">Mensaje</Label>
-            <Textarea id="message" name="message" rows={5} required />
+            <Label htmlFor="message" className="text-white">Mensaje</Label>
+            <Textarea 
+              id="message" 
+              name="message" 
+              rows={5} 
+              required 
+              className="bg-black border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
+            />
           </div>
-          {error && <div className="text-destructive text-sm">{error}</div>}
+          {error && <div className="text-red-500 text-sm">{error}</div>}
           {isSuccess && (
-            <div className="text-green-600 text-sm">
+            <div className="text-green-500 text-sm">
               ¡Mensaje enviado correctamente! Te responderemos lo antes posible.
             </div>
           )}
         </CardContent>
         <CardFooter>
-          <Button type="submit" disabled={isSubmitting} className="w-full">
+          <Button 
+            type="submit" 
+            disabled={isSubmitting} 
+            className="w-full bg-red-600 hover:bg-red-700 text-white"
+          >
             {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             {isSubmitting ? "Enviando..." : "Enviar mensaje"}
           </Button>

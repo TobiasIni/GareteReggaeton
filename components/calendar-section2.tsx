@@ -36,7 +36,7 @@ const dummyEvents: Event[] = [
     id: 3,
     title: "Gare7e: Noche de Reggaeton Clásico",
     description: "Los mejores temas del reggaeton de los 2000",
-    date: "2024-05-15T23:00:00.000Z",
+    date: "2027-05-15T23:00:00.000Z",
     location: "Sala Gare7e, Madrid",
     ticket_url: "#",
     image_url: "/logoGarete.png",
@@ -189,8 +189,8 @@ const EventsCalendar2 = () => {
   return (
     <div className="relative w-full px-4 md:px-8 lg:px-16 xl:px-20">
       <div className="mb-8 text-center">
-        <h2 className="text-3xl font-bold mb-2">Próximos Eventos</h2>
-        <p className="text-muted-foreground">Descubre nuestras próximas fiestas y asegura tu entrada</p>
+        <h2 className="text-3xl font-bold mb-2 text-white">Próximos Eventos</h2>
+        <p className="text-muted-foreground text-white">Descubre nuestras próximas fiestas y asegura tu entrada</p>
       </div>
 
       <button
@@ -211,12 +211,10 @@ const EventsCalendar2 = () => {
           return (
             <div
               key={event.id}
-              className={`flex-none snap-start transition-all duration-300
-                ${isPastEvent ? "opacity-60 grayscale" : ""}
-                `}
+              className="flex-none snap-start transition-all duration-300"
               style={{ width: `${calculatedCardWidth}px` }}
             >
-              <EventCard2 event={event} />
+              <EventCard2 event={event} isPastEvent={isPastEvent} />
             </div>
           );
         })}

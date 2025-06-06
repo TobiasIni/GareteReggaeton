@@ -256,10 +256,9 @@ const EventsCalendar = () => {
           return (
             <div
               key={event.id}
-              className={`group relative flex-none snap-start overflow-hidden rounded-2xl bg-card shadow-lg transition-all duration-300
+              className={`group relative flex-none snap-start overflow-hidden rounded-2xl bg-black shadow-lg transition-all duration-300
                 ${isPastEvent ? "opacity-60 grayscale" : "hover:scale-105 hover:shadow-2xl"}
                 `}
-              // Set dynamic width based on carouselWidth state
               style={{ width: `${calculatedCardWidth}px` }}
             >
               <Link href={event.ticketUrl} className="block h-full" prefetch={false}>
@@ -268,24 +267,23 @@ const EventsCalendar = () => {
                     src={event.imageUrl || "/placeholder.svg"}
                     alt={event.title}
                     className="h-full w-full object-cover transition-all duration-300 group-hover:scale-105"
-                    // Adjust image width to match new card size
-                    width={Math.round(calculatedCardWidth)} // Round to nearest pixel
-                    height={400} // Keep original height ratio or adjust as needed
+                    width={Math.round(calculatedCardWidth)}
+                    height={400}
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
-                  {isPastEvent && ( // Conditionally render Sold Out tag
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                  {isPastEvent && (
                     <span className="absolute bottom-4 left-4 rounded-full bg-red-600 px-4 py-2 text-sm font-bold uppercase text-white shadow-md">
                       Sold Out
                     </span>
                   )}
                 </div>
-                <div className="space-y-6 p-8">
+                <div className="space-y-6 p-8 bg-black text-white">
                   <div className="flex items-center justify-between">
-                    <span className="rounded-full bg-primary px-4 py-2 text-base font-medium text-primary-foreground">
+                    <span className="rounded-full bg-red-600 px-4 py-2 text-base font-medium text-white">
                       {event.price}
                     </span>
-                    <span className="text-base text-muted-foreground">
+                    <span className="text-base text-gray-300">
                       {new Date(event.date).toLocaleDateString("es-ES", {
                         day: "numeric",
                         month: "long",
@@ -294,23 +292,23 @@ const EventsCalendar = () => {
                     </span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-semibold tracking-tight text-card-foreground transition-colors duration-300 group-hover:text-primary">
+                    <h3 className="text-2xl font-semibold tracking-tight text-white transition-colors duration-300 group-hover:text-red-600">
                       {event.title}
                     </h3>
-                    <p className="mt-3 text-base text-muted-foreground">{event.description}</p>
+                    <p className="mt-3 text-base text-gray-300">{event.description}</p>
                   </div>
                   <div className="flex flex-wrap gap-3">
-                    <span className="rounded-full bg-secondary px-4 py-2 text-base font-medium text-secondary-foreground">
+                    <span className="rounded-full bg-zinc-800 px-4 py-2 text-base font-medium text-white">
                       {event.time}
                     </span>
-                    <span className="rounded-full bg-secondary px-4 py-2 text-base font-medium text-secondary-foreground">
+                    <span className="rounded-full bg-zinc-800 px-4 py-2 text-base font-medium text-white">
                       {event.location}
                     </span>
                   </div>
                   <div className="flex items-center justify-center">
                     <Link
                       href={event.ticketUrl}
-                      className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                      className="inline-flex items-center gap-2 rounded-md bg-red-600 px-6 py-3 text-base font-medium text-white transition-colors hover:bg-red-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-red-600"
                       prefetch={false}
                     >
                       <Ticket className="h-5 w-5" />

@@ -36,11 +36,12 @@ const dummyEvents: Event[] = [
 
 interface EventCardProps {
   event?: Event;
+  isPastEvent?: boolean;
 }
 
-export function EventCard2({ event = dummyEvents[0] }: EventCardProps) {
+export function EventCard2({ event = dummyEvents[0], isPastEvent = false }: EventCardProps) {
   return (
-    <Card className="overflow-hidden event-card glass-card group relative cursor-pointer">
+    <Card className={`overflow-hidden event-card glass-card group relative cursor-pointer ${isPastEvent ? 'opacity-60 grayscale' : ''}`}>
       {/* Event Image */}
       <div className="aspect-[16/9] relative">
         <Image
@@ -69,13 +70,19 @@ export function EventCard2({ event = dummyEvents[0] }: EventCardProps) {
               )}
             </div>
 
-            {/* Buy Ticket Button on hover */}
-            <Button asChild className="mt-6">
-              <Link href={event.ticket_url || "#"}>
-                <TicketIcon size={18} className="mr-2" />
-                Comprar Entradas
-              </Link>
-            </Button>
+            {/* Buy Ticket Button or Sold Out on hover */}
+            {isPastEvent ? (
+              <div className="mt-6 px-6 py-2 bg-red-600 text-white font-bold rounded-md">
+                Sold Out
+              </div>
+            ) : (
+              <Button asChild className="mt-6">
+                <Link href={event.ticket_url || "#"}>
+                  <TicketIcon size={18} className="mr-2" />
+                  Comprar Entradas
+                </Link>
+              </Button>
+            )}
           </div>
         </div>
       </div>

@@ -60,6 +60,9 @@ const Navbar = () => {
           <Link href="/quienes-somos" className="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 after:transition-all after:duration-300 hover:after:w-full hover:text-red-600 py-1">
             Quiénes somos
           </Link>
+          <Link href="/quienes-somos-2" className="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 after:transition-all after:duration-300 hover:after:w-full hover:text-red-600 py-1">
+            Quiénes somos 2
+          </Link>
           <Link href="/eventos" className="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 after:transition-all after:duration-300 hover:after:w-full hover:text-red-600 py-1">
             Próximos eventos
           </Link>
@@ -105,6 +108,9 @@ const Navbar = () => {
 
           <Link href="/quienes-somos" className="hover:text-red-600 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
             Quiénes somos
+          </Link>
+          <Link href="/quienes-somos-2" className="hover:text-red-600 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
+            Quiénes somos 2
           </Link>
           <Link href="/eventos" className="hover:text-red-600 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
             Próximos eventos

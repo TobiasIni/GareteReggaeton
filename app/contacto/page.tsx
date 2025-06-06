@@ -5,22 +5,22 @@ export default function ContactPage() {
   return (
     <div className="container mx-auto px-4 py-16">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Contacto</h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          ¿Tienes alguna pregunta o propuesta? Ponte en contacto con nosotros.
+        <h1 className="text-4xl font-bold mb-4 text-white">Contacto</h1>
+        <p className="text-muted-foreground max-w-2xl mx-auto text-white  ">
+          Seccion de preguntas frecuentes
         </p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">
         <div>
-          <h2 className="text-2xl font-bold mb-6">Información de Contacto</h2>
+          <h2 className="text-2xl font-bold mb-6 text-white">Información de Contacto</h2>
 
           <div className="space-y-6">
             <div className="flex items-start">
               <MapPin size={24} className="text-primary mr-4 mt-1" />
               <div>
-                <h3 className="font-semibold mb-1">Dirección</h3>
-                <p className="text-muted-foreground">
+                <h3 className="font-semibold mb-1 text-white">Dirección</h3>
+                <p className="text-muted-foreground text-white">
                   Calle Principal 123
                   <br />
                   28001 Madrid, España
@@ -31,8 +31,8 @@ export default function ContactPage() {
             <div className="flex items-start">
               <Mail size={24} className="text-primary mr-4 mt-1" />
               <div>
-                <h3 className="font-semibold mb-1">Email</h3>
-                <p className="text-muted-foreground">
+                <h3 className="font-semibold mb-1 text-white">Email</h3>
+                <p className="text-muted-foreground text-white">
                   info@gare7e.com
                   <br />
                   eventos@gare7e.com
@@ -43,8 +43,8 @@ export default function ContactPage() {
             <div className="flex items-start">
               <Phone size={24} className="text-primary mr-4 mt-1" />
               <div>
-                <h3 className="font-semibold mb-1">Teléfono</h3>
-                <p className="text-muted-foreground">
+                <h3 className="font-semibold mb-1 text-white">Teléfono</h3>
+                <p className="text-muted-foreground text-white">
                   +34 912 345 678
                   <br />
                   +34 666 777 888
@@ -91,4 +91,5 @@ export default function ContactPage() {
       </div>
     </div>
   )
+  
 }
