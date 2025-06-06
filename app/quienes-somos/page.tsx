@@ -4,81 +4,88 @@ import { Card, CardContent } from "@/components/ui/card"
 export default function AboutPage() {
   return (
     <div className="container mx-auto px-4 py-16">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Quienes Somos</h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          Conoce la historia detrás de Gare7e, la fiesta de reggaeton viejo que está revolucionando la noche.
-        </p>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-        <div>
-          <h2 className="text-2xl font-bold mb-4">Nuestra Historia</h2>
-          <p className="mb-4">
-            Gare7e nació en 2018 como un pequeño evento entre amigos que compartían la pasión por el reggaeton de la
-            época dorada. Lo que comenzó como una reunión nostálgica se convirtió rápidamente en un fenómeno que atraía
-            a cientos de personas cada mes.
+      {/* Hero Section: Quiénes Somos - Enfoque Impactante */}
+      <div className="relative h-[500px] w-full mb-20 overflow-hidden rounded-xl shadow-2xl">
+        <Image
+          src="/logoGarete.png?height=1000&width=1600" // Considera una imagen de fondo más abstracta o energética
+          alt="Gare7e"
+          fill
+          className="object-cover object-center brightness-75"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-white">
+          <h1 className="text-5xl font-extrabold mb-4 animate-fade-in-up">
+            Reggaeton del Bueno
+          </h1>
+          <p className="text-xl max-w-3xl animate-fade-in-up delay-200">
+            Somos la esencia de la fiesta, reviviendo los clásicos que nos hicieron bailar.
           </p>
-          <p className="mb-4">
-            Nuestro objetivo es simple: revivir los clásicos del perreo que marcaron una generación. Desde Daddy Yankee
-            hasta Don Omar, pasando por Wisin & Yandel y Tego Calderón, en Gare7e celebramos la música que nos hizo
-            bailar en los 2000.
-          </p>
-          <p>
-            Hoy, Gare7e es sinónimo de nostalgia, buena música y mejor ambiente. Nuestras fiestas son un viaje en el
-            tiempo donde el reggaeton viejo vuelve a ser protagonista.
-          </p>
-        </div>
-        <div className="relative aspect-video md:aspect-square">
-          <Image
-            src="/placeholder.svg?height=600&width=600"
-            alt="Fiesta Gare7e"
-            fill
-            className="object-cover rounded-lg"
-          />
         </div>
       </div>
 
-      <div className="mb-16">
-        <h2 className="text-2xl font-bold mb-8 text-center">Nuestro Equipo</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Sección: Nuestra Esencia - Timeline Interactiva */}
+      <div className="mb-20">
+        <h2 className="text-4xl font-bold text-center mb-12">Nuestra Evolución</h2>
+        <div className="relative border-l-2 border-gray-700 ml-4 md:ml-12">
+          {/* Hito 1 */}
+          <div className="mb-10 ml-8 relative before:content-[''] before:absolute before:-left-10 before:top-2 before:w-5 before:h-5 before:rounded-full before:bg-red-500 before:border-4 before:border-gray-800">
+            <h3 className="text-2xl font-semibold mb-2 text-white">2025: Nuestra primera fiesta</h3>
+            <p className="text-white">
+              Todo comenzó como una chispa entre amigos, una reunión íntima de amantes del reggaeton de la vieja escuela. Lo que era una simple noche se convirtió en la promesa de algo más grande.
+            </p>
+          </div>
+          {/* Hito 2 */}
+          <div className="mb-10 ml-8 relative before:content-[''] before:absolute before:-left-10 before:top-2 before:w-5 before:h-5 before:rounded-full before:bg-red-500 before:border-4 before:border-gray-800">
+            <h3 className="text-2xl font-semibold mb-2 text-white">Crecimiento Explosivo: La Fusión de Generaciones</h3>
+            <p className="text-white">
+              La noticia se esparció. Cientos, luego miles, se unieron a nuestra misión de revivir el perreo clásico. De Daddy Yankee a Don Omar, cada beat es un viaje a nuestros recuerdos.
+            </p>
+          </div>
+          {/* Hito 3 */}
+          <div className="mb-10 ml-8 relative before:content-[''] before:absolute before:-left-10 before:top-2 before:w-5 before:h-5 before:rounded-full before:bg-red-500 before:border-4 before:border-gray-800">
+            <h3 className="text-2xl font-semibold mb-2 text-white">Hoy: Más que una Fiesta, una Comunidad</h3>
+            <p className="text-white">
+              Gare7e es hoy el epicentro de la nostalgia y la buena vibra. Somos la banda sonora de una generación, donde cada fiesta es un reencuentro con la música que nos define.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Sección: Mentes Detrás del Ritmo - Diseño de Cards Flotantes */}
+      <div className="mb-20">
+        <h2 className="text-4xl font-bold text-center mb-12 text-white">Nosotros</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
           {[
-            { name: "Carlos Rodríguez", role: "Fundador & DJ", image: "/placeholder.svg?height=300&width=300" },
-            { name: "Laura Gómez", role: "Directora de Eventos", image: "/placeholder.svg?height=300&width=300" },
-            { name: "Miguel Ángel", role: "DJ Residente", image: "/placeholder.svg?height=300&width=300" },
-            { name: "Ana Martínez", role: "Relaciones Públicas", image: "/placeholder.svg?height=300&width=300" },
+            { name: "Leonardo Olivera", role: "Fundador", image: "/placeholder.svg?height=300&width=300" },
+            { name: "Candela ", role: "Fundadora", image: "/placeholder.svg?height=300&width=300" },
           ].map((member, index) => (
-            <Card key={index} className="overflow-hidden">
-              <div className="aspect-square relative">
-                <Image src={member.image || "/placeholder.svg"} alt={member.name} fill className="object-cover" />
+            <Card key={index} className="overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl bg-gradient-to-br from-gray-800 to-black text-white border-none">
+              <div className="aspect-square relative group">
+                <Image src={member.image || "/placeholder.svg"} alt={member.name} fill className="object-cover transform group-hover:scale-110 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <p className="text-center font-bold text-lg">{member.role}</p>
+                </div>
               </div>
               <CardContent className="text-center p-4">
-                <h3 className="font-bold">{member.name}</h3>
-                <p className="text-sm text-muted-foreground">{member.role}</p>
+                <h3 className="font-bold text-xl">{member.name}</h3>
+                <p className="text-sm text-gray-400 mt-1">{member.role.split(' ')[0]} {member.role.split(' ')[1]}</p> {/* Para mostrar solo el rol primario en la tarjeta */}
               </CardContent>
             </Card>
           ))}
         </div>
       </div>
 
+      {/* Sección: Nuestro Manifiesto - Iconos y Mensajes Clave */}
       <div className="text-center">
-        <h2 className="text-2xl font-bold mb-4">Nuestra Misión</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-          En Gare7e, nuestra misión es mantener viva la esencia del reggaeton viejo, creando espacios donde la nostalgia
-          y la diversión se unen para ofrecer experiencias únicas.
-        </p>
-        <div className="grid sm:grid-cols-3 gap-6">
+        <h2 className="text-4xl font-bold mb-12 text-white">Nuestro Manifiesto</h2>
+        <div className="grid sm:grid-cols-2 gap-8">
           {[
-            { title: "Nostalgia", description: "Revivir los éxitos que marcaron una generación" },
-            {
-              title: "Comunidad",
-              description: "Crear un espacio donde los amantes del reggaeton viejo puedan conectar",
-            },
-            { title: "Experiencia", description: "Ofrecer fiestas inolvidables con la mejor selección musical" },
+            { title: "Nuestro estilo", description: "Revivimos los mejores clásicos del reggaeton viejo, para que puedas bailar y disfrutar de la música que tanto te gustó.", icon: "🎵" }, // Puedes reemplazar con iconos de tu librería (ej. lucide-react)
+            { title: "Nuestra comunidad", description: "Nuestra gente nos hace unicos", icon: "🤝" },
           ].map((item, index) => (
-            <div key={index} className="p-6 border rounded-lg">
-              <h3 className="font-bold mb-2">{item.title}</h3>
-              <p className="text-sm text-muted-foreground">{item.description}</p>
+            <div key={index} className="p-8 border border-gray-700 rounded-xl shadow-lg bg-gray-900 transition-all duration-300 hover:border-red-500 hover:shadow-red-500/30">
+              <div className="text-5xl mb-4">{item.icon}</div>
+              <h3 className="font-bold text-2xl mb-3 text-white">{item.title}</h3>
+              <p className="text-base text-gray-300">{item.description}</p>
             </div>
           ))}
         </div>

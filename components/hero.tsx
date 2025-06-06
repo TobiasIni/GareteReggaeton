@@ -1,20 +1,29 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export function Hero() {
   return (
-    <div className="relative overflow-hidden">
-      <div className="hero-gradient absolute inset-0 opacity-60" />
-      <div className="container relative z-10 mx-auto px-4 py-32 text-center sm:px-6 lg:px-8">
-        <h1 className="font-montserrat text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
-          <span className="block"></span>
-          <span className="block bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
-            
-          </span>
-        </h1>
-        <p className="mx-auto mt-6 max-w-lg text-xl text-gray-300">
-          
-        </p>
+    <div className="relative w-full h-screen overflow-hidden">
+      {/* Video de fondo */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline // Important for autoplay on mobile devices
+        className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover transform -translate-x-1/2 -translate-y-1/2 z-0"
+      >
+        <source src="/videoplayback.mp4" type="video/mp4" />
+        Tu navegador no soporta la reproducción de video.
+      </video>
+
+      {/* Capa de superposición para el gradiente/oscurecimiento */}
+      <div className="absolute inset-0 bg-black bg-opacity-50 z-10" /> {/* Ajusta la opacidad aquí (ej: bg-opacity-50) */}
+      {/* Puedes mantener tu 'hero-gradient' si también lo quieres por encima del video */}
+
+
+      {/* Contenido principal (texto y botones) */}
+      <div className="container relative z-30 mx-auto flex h-full flex-col items-center justify-center px-4 text-center sm:px-6 lg:px-8">
+        <img src="/logoGarete.png" alt="Garete" className="w-1/2 h-1/2" />
         <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
           <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">
             <Button asChild size="lg" className="w-full">
@@ -27,5 +36,5 @@ export function Hero() {
         </div>
       </div>
     </div>
-  )
+  );
 }
