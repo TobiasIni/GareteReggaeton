@@ -20,7 +20,7 @@ export default async function Home() {
         <Hero />
         <div className="section-spacing">
           <div className="section-spacing">
-            <span className="text-2xl font-bold">A definir Opcion</span>
+            <span className="text-2xl font-bold">A definir Opcion Spotify</span>
             <EventsCalendar2/>
           </div>
 
