@@ -28,26 +28,26 @@ export function Hero() {
         <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
           <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">
           <Button
-  asChild
-  size="lg"
-  className="w-full bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold px-6 py-3 rounded-full shadow-lg flex items-center justify-center gap-2 hover:from-red-700 hover:to-red-500 transition-all duration-300"
->
-  <Link href="/eventos">
-    <CalendarIcon className="w-5 h-5" />
-    Próximos Eventos
-  </Link>
-</Button>
+            asChild
+            size="lg"
+            className="w-full bg-red-600 text-white font-bold px-6 py-4 rounded-full shadow-lg hover:bg-red-700 transition-all duration-300 flex items-center justify-center gap-3 border border-red-600"
+          >
+            <Link href="/eventos">
+              <CalendarIcon className="w-6 h-6" />
+              Próximos Eventos
+            </Link>
+          </Button>
 
-<Button
-  asChild
-  size="lg"
-  className="w-full bg-gradient-to-r from-gray-900 to-black text-white font-semibold px-6 py-3 rounded-full shadow-lg flex items-center justify-center gap-2 hover:from-black hover:to-gray-900 transition-all duration-300"
->
-  <Link href="/galeria">
-    <ImageIcon className="w-5 h-5" />
-    Ver Galería
-  </Link>
-</Button>
+          <Button
+            asChild
+            size="lg"
+            className="w-full bg-black text-white font-bold px-6 py-4 rounded-full shadow-lg hover:bg-zinc-900 transition-all duration-300 flex items-center justify-center gap-3 border border-white"
+          >
+            <Link href="/galeria">
+              <ImageIcon className="w-6 h-6" />
+              Ver Galería
+            </Link>
+          </Button>
           </div>
         </div>
       </div>
