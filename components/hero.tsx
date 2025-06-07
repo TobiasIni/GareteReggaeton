@@ -30,7 +30,7 @@ export function Hero() {
           <Button
   asChild
   size="lg"
-  className="w-full bg-red-600 text-white font-semibold px-6 py-3 rounded-full flex items-center justify-center gap-2 hover:bg-white hover:text-red-600 hover:border hover:border-red-600 transition-all duration-300"
+  className="w-full bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold px-6 py-3 rounded-full shadow-lg flex items-center justify-center gap-2 hover:from-red-700 hover:to-red-500 transition-all duration-300"
 >
   <Link href="/eventos">
     <CalendarIcon className="w-5 h-5" />
@@ -41,7 +41,7 @@ export function Hero() {
 <Button
   asChild
   size="lg"
-  className="w-full bg-black text-white font-semibold px-6 py-3 rounded-full flex items-center justify-center gap-2 hover:bg-red-600 hover:text-white transition-all duration-300"
+  className="w-full bg-gradient-to-r from-gray-900 to-black text-white font-semibold px-6 py-3 rounded-full shadow-lg flex items-center justify-center gap-2 hover:from-black hover:to-gray-900 transition-all duration-300"
 >
   <Link href="/galeria">
     <ImageIcon className="w-5 h-5" />
