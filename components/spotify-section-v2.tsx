@@ -12,10 +12,9 @@ const SpotifySectionV2 = () => {
     <div className="max-w-4xl mx-auto">
       <div className="flex flex-col md:flex-row gap-8 items-center">
         <div className="w-full md:w-1/2">
-          <h3 className="text-2xl font-bold mb-4">La Playlist Oficial de Gare7e</h3>
-          <p className="text-muted-foreground mb-6">
-            Reviví los mejores clásicos del reggaeton viejo con nuestra playlist oficial. Desde Daddy Yankee hasta Don
-            Omar, pasando por Wisin & Yandel y Tego Calderón.
+          <h3 className="text-2xl font-bold mb-4 text-white">La Playlist Oficial de Gare7e</h3>
+          <p className="text-muted-foreground mb-6 text-white ">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
           </p>
           <div className="flex flex-col space-y-4">
             <Button

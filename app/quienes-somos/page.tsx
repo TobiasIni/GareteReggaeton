@@ -17,7 +17,7 @@ export default function AboutPage() {
             Reggaeton del Bueno
           </h1>
           <p className="text-xl max-w-3xl animate-fade-in-up delay-200">
-            Somos la esencia de la fiesta, reviviendo los clásicos que nos hicieron bailar.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
           </p>
         </div>
       </div>
@@ -30,21 +30,21 @@ export default function AboutPage() {
           <div className="mb-10 ml-8 relative before:content-[''] before:absolute before:-left-10 before:top-2 before:w-5 before:h-5 before:rounded-full before:bg-red-500 before:border-4 before:border-gray-800">
             <h3 className="text-2xl font-semibold mb-2 text-white">2025: Nuestra primera fiesta</h3>
             <p className="text-white">
-              Todo comenzó como una chispa entre amigos, una reunión íntima de amantes del reggaeton de la vieja escuela. Lo que era una simple noche se convirtió en la promesa de algo más grande.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
             </p>
           </div>
           {/* Hito 2 */}
           <div className="mb-10 ml-8 relative before:content-[''] before:absolute before:-left-10 before:top-2 before:w-5 before:h-5 before:rounded-full before:bg-red-500 before:border-4 before:border-gray-800">
             <h3 className="text-2xl font-semibold mb-2 text-white">Crecimiento Explosivo: La Fusión de Generaciones</h3>
             <p className="text-white">
-              La noticia se esparció. Cientos, luego miles, se unieron a nuestra misión de revivir el perreo clásico. De Daddy Yankee a Don Omar, cada beat es un viaje a nuestros recuerdos.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
             </p>
           </div>
           {/* Hito 3 */}
           <div className="mb-10 ml-8 relative before:content-[''] before:absolute before:-left-10 before:top-2 before:w-5 before:h-5 before:rounded-full before:bg-red-500 before:border-4 before:border-gray-800">
             <h3 className="text-2xl font-semibold mb-2 text-white">Hoy: Más que una Fiesta, una Comunidad</h3>
             <p className="text-white">
-              Gare7e es hoy el epicentro de la nostalgia y la buena vibra. Somos la banda sonora de una generación, donde cada fiesta es un reencuentro con la música que nos define.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
             </p>
           </div>
         </div>
@@ -79,8 +79,8 @@ export default function AboutPage() {
         <h2 className="text-4xl font-bold mb-12 text-white">Nuestro Manifiesto</h2>
         <div className="grid sm:grid-cols-2 gap-8">
           {[
-            { title: "Nuestro estilo", description: "Revivimos los mejores clásicos del reggaeton viejo, para que puedas bailar y disfrutar de la música que tanto te gustó.", icon: "🎵" }, // Puedes reemplazar con iconos de tu librería (ej. lucide-react)
-            { title: "Nuestra comunidad", description: "Nuestra gente nos hace unicos", icon: "🤝" },
+            { title: "Nuestro estilo", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.", icon: "🎵" }, // Puedes reemplazar con iconos de tu librería (ej. lucide-react)
+            { title: "Nuestra comunidad", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.", icon: "🤝" },
           ].map((item, index) => (
             <div key={index} className="p-8 border border-gray-700 rounded-xl shadow-lg bg-gray-900 transition-all duration-300 hover:border-red-500 hover:shadow-red-500/30">
               <div className="text-5xl mb-4">{item.icon}</div>

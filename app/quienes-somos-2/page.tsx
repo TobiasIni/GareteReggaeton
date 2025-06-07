@@ -8,7 +8,7 @@ export default function AboutPage() {
       <section className="py-20 px-6 text-center border-b border-red-600">
         <h1 className="text-5xl font-extrabold uppercase mb-4 tracking-wide text-red-600">Quiénes Somos</h1>
         <p className="text-lg max-w-3xl mx-auto text-gray-300">
-          Gare7e es el latido de una generación. Una mezcla de nostalgia, ritmo y cultura urbana que une a quienes saben que el reggaetón de antes nunca murió.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
         </p>
       </section>
 
@@ -17,13 +17,13 @@ export default function AboutPage() {
         <div>
           <h2 className="text-3xl font-bold text-red-600 mb-4">Nuestros Inicios</h2>
           <p className="text-gray-300">
-            Todo comenzó con una fiesta improvisada entre panas. Sin quererlo, encendimos una chispa que sigue ardiendo hoy. El perreo viejo nos unió, y ya no hay vuelta atrás.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
           </p>
         </div>
         <div>
           <h2 className="text-3xl font-bold text-red-600 mb-4">La Evolución</h2>
           <p className="text-gray-300">
-            Gare7e se transformó en movimiento. De encuentros caseros a eventos multitudinarios, fuimos creciendo con la misma esencia: puro ritmo, pura calle, puro corazón.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
           </p>
         </div>
       </section>
@@ -34,8 +34,8 @@ export default function AboutPage() {
         <h2 className="text-4xl font-bold text-center mb-12 text-white">Nuestra Esencia</h2>
         <div className="grid md:grid-cols-2 gap-8 text-center">
           {[
-            { icon: "🔥", title: "¿Que nos distingue?", desc: "Hacemos la fiesta" },
-            { icon: "🎶", title: "Ritmo", desc: "El reggaetón viejo." },
+            { icon: "🔥", title: "¿Que nos distingue?", desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos." },
+            { icon: "🎶", title: "Ritmo", desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos." },
           ].map((val, i) => (
             <div key={i} className="p-6 border border-red-600 rounded-xl bg-black hover:bg-zinc-800 transition">
               <div className="text-5xl mb-4">{val.icon}</div>

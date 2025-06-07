@@ -20,27 +20,27 @@ export default async function Home() {
         <Hero />
         <div className="section-spacing">
           <div className="section-spacing">
-            <span className="text-2xl font-bold">A definir Opcion Spotify</span>
+            <span className="text-2xl font-bold text-white">A definir Opcion Spotify</span>
             <EventsCalendar2/>
           </div>
 
-          <span className="text-2xl font-bold">Opcion 1 Seccion Spotify</span>
+          <span className="text-2xl font-bold text-white">Opcion 1 Seccion Spotify</span>
           <div className="section-spacing">
             <SpotifySection />
           </div>
-          <span className="text-2xl font-bold">Opcion 2 Seccion Spotify</span>
+          <span className="text-2xl font-bold text-white">Opcion 2 Seccion Spotify</span>
           <div className="section-spacing">
             <SpotifySectionV2 />
           </div>
-          <span className="text-2xl font-bold">Opcion 3 Seccion Spotify</span>
+          <span className="text-2xl font-bold text-white">Opcion 3 Seccion Spotify</span>
           <div className="section-spacing">
             <SpotifySectionV3 />
           </div>
-          <span className="text-2xl font-bold">Opcion 1 Formulario de Contacto</span>
+          <span className="text-2xl font-bold text-white">Opcion 1 Formulario de Contacto</span>
           <div className="section-spacing">
             <ContactCta />
           </div>
-          <span className="text-2xl font-bold">Opcion 2 Formulario de Contacto</span>
+          <span className="text-2xl font-bold text-white">Opcion 2 Formulario de Contacto</span>
           <div className="section-spacing">
             <ContactForm />
           </div>
