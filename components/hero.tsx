@@ -27,27 +27,21 @@ export function Hero() {
         <img src="/logoGarete.png" alt="Garete" className="w-1/2 h-1/2" />
         <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
           <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">
-          <Button
-            asChild
-            size="lg"
-            className="w-full bg-red-600 text-white font-bold px-6 py-4 rounded-full shadow-lg hover:bg-red-700 transition-all duration-300 flex items-center justify-center gap-3 border border-red-600"
-          >
-            <Link href="/eventos">
-              <CalendarIcon className="w-6 h-6" />
+            <Link 
+              href="/eventos"
+              className="inline-flex items-center justify-center w-full px-6 py-4 text-base font-bold text-white bg-red-600 border border-red-600 rounded-full shadow-lg hover:bg-red-700 transition-all duration-300"
+            >
+              <CalendarIcon className="w-6 h-6 mr-3" />
               Próximos Eventos
             </Link>
-          </Button>
 
-          <Button
-            asChild
-            size="lg"
-            className="w-full bg-black text-white font-bold px-6 py-4 rounded-full shadow-lg hover:bg-zinc-900 transition-all duration-300 flex items-center justify-center gap-3 border border-white"
-          >
-            <Link href="/galeria">
-              <ImageIcon className="w-6 h-6" />
+            <Link 
+              href="/galeria"
+              className="inline-flex items-center justify-center w-full px-6 py-4 text-base font-bold text-white bg-black border border-white rounded-full shadow-lg hover:bg-zinc-900 transition-all duration-300"
+            >
+              <ImageIcon className="w-6 h-6 mr-3" />
               Ver Galería
             </Link>
-          </Button>
           </div>
         </div>
       </div>
