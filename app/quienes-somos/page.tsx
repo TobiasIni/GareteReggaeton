@@ -55,7 +55,7 @@ export default function AboutPage() {
         <h2 className="text-4xl font-bold text-center mb-12 text-white">Nosotros</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
           {[
-            { name: "Leonardo Olivera", role: "Fundador", image: "/placeholder.svg?height=300&width=300" },
+            { name: "Leonardo", role: "Fundador", image: "/placeholder.svg?height=300&width=300" },
             { name: "Candela ", role: "Fundadora", image: "/placeholder.svg?height=300&width=300" },
           ].map((member, index) => (
             <Card key={index} className="overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl bg-gradient-to-br from-gray-800 to-black text-white border-none">
