@@ -1,95 +1,169 @@
-import { ContactForm } from "@/components/contact-form"
-import { Mail, MapPin, Phone } from "lucide-react"
+"use client";
+
+import { useState } from "react";
+import { Mail, Phone, MapPin, ChevronDown, ChevronUp } from "lucide-react";
+import { ContactForm } from "@/components/contact-form"; // Assuming this component exists
+
+interface FAQItemProps {
+  question: string;
+  answer: string;
+}
+
+// Componente para una pregunta frecuente individual
+const FAQItem = ({ question, answer }: FAQItemProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="border-b border-gray-700 pb-4">
+      <button
+        className="flex justify-between items-center w-full py-3 text-lg font-semibold text-white hover:text-red-400 transition-colors duration-200"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+      >
+        <span>{question}</span>
+        {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+      </button>
+      {isOpen && (
+        <p className="pt-2 pb-3 text-gray-300 leading-relaxed animate-fade-in">
+          {answer}
+        </p>
+      )}
+    </div>
+  );
+};
 
 export default function ContactPage() {
+  const faqs = [
+    {
+      question: "¿Cuáles son los horarios de atención?",
+      answer: "Nuestro equipo está disponible de Lunes a Viernes de 10:00 a 18:00 y Sábados de 12:00 a 16:00. Los Domingos cerramos para recargar energías."
+    },
+    {
+      question: "¿Dónde puedo encontrar las entradas para los eventos?",
+      answer: "Las entradas para nuestros eventos están disponibles a través de nuestra página web en la sección de 'Eventos' o en plataformas de venta de tickets asociadas, que anunciaremos con cada evento."
+    },
+    {
+      question: "¿Ofrecen servicios para eventos privados?",
+      answer: "¡Absolutamente! Ofrecemos servicios personalizados para eventos privados, desde fiestas corporativas hasta celebraciones personales. Contactanos a través del formulario o email para más detalles."
+    },
+    {
+      question: "¿Cómo puedo enviar demos o propuestas musicales?",
+      answer: "Si sos un DJ o artista y querés compartir tu música con nosotros, envianos tus demos o propuestas a nuestro email de eventos: eventos@gare7e.com. ¡Nos encanta descubrir nuevos talentos!"
+    },
+    {
+      question: "¿Hay estacionamiento disponible en sus eventos?",
+      answer: "La disponibilidad de estacionamiento varía según la ubicación del evento. Te recomendamos consultar la información específica de cada evento en nuestra sección de 'Eventos' para detalles sobre estacionamiento y transporte público."
+    }
+  ];
+
   return (
-    <div className="container mx-auto px-4 py-16">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4 text-white">Contacto</h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto text-white  ">
-          Seccion de preguntas frecuentes
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-black-900 via-black to-gray-950 text-white font-sans">
+      <div className="container mx-auto px-4 py-16">
+        {/* Encabezado Principal */}
+        <div className="text-center mb-16">
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-4 bg-clip-text text-red-500 leading-tight">
+            Contactate con nosotros <span className="font-black italic"></span>
+          </h1>
+          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto tracking-wide">
+            Sos Dj o artista y querés contactarnos?
+          </p>
+        </div>
 
-      <div className="grid md:grid-cols-2 gap-8">
-        <div>
-          <h2 className="text-2xl font-bold mb-6 text-white">Información de Contacto</h2>
+        <div className="grid md:grid-cols-2 gap-16 items-start">
+          {/* Información de Contacto */}
+          <div>
+            <h2 className="text-3xl font-bold mb-8 text-red-400 border-b-2 border-red-500 pb-2 inline-block">
+              Información Esencial
+            </h2>
 
-          <div className="space-y-6">
-            <div className="flex items-start">
-              <MapPin size={24} className="text-primary mr-4 mt-1" />
-              <div>
-                <h3 className="font-semibold mb-1 text-white">Dirección</h3>
-                <p className="text-muted-foreground text-white">
-                  Calle Principal 123
-                  <br />
-                  Capital Federal, Argentina
-                </p>
+            <div className="space-y-8">
+              <div className="flex items-start">
+                <MapPin size={28} className="text-red-500 mr-4 mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-bold text-xl mb-1 text-white">Nuestra Base</h3>
+                  <p className="text-gray-300">
+                    Calle Principal 123, <br />
+                    Capital Federal, C.A.B.A., Argentina
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <Mail size={28} className="text-red-500 mr-4 mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-bold text-xl mb-1 text-white">Email Directo</h3>
+                  <p className="text-gray-300">
+                    <a href="mailto:info@gare7e.com" className="hover:text-red-400 transition-colors">info@gare7e.com</a>
+                    <br />
+                    <a href="mailto:eventos@gare7e.com" className="hover:text-red-400 transition-colors">eventos@gare7e.com</a> (para propuestas y demos)
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <Phone size={28} className="text-red-500 mr-4 mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-bold text-xl mb-1 text-white">Llamanos</h3>
+                  <p className="text-gray-300">
+                    <a href="tel:+34912345678" className="hover:text-red-400 transition-colors">+34 912 345 678</a>
+                    <br />
+                    <a href="tel:+34666777888" className="hover:text-red-400 transition-colors">+34 666 777 888</a>
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="flex items-start">
-              <Mail size={24} className="text-primary mr-4 mt-1" />
-              <div>
-                <h3 className="font-semibold mb-1 text-white">Email</h3>
-                <p className="text-muted-foreground text-white">
-                  info@gare7e.com
-                  <br />
-                  eventos@gare7e.com
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start">
-              <Phone size={24} className="text-primary mr-4 mt-1" />
-              <div>
-                <h3 className="font-semibold mb-1 text-white">Teléfono</h3>
-                <p className="text-muted-foreground text-white">
-                  +34 912 345 678
-                  <br />
-                  +34 666 777 888
-                </p>
+            {/* Horarios de Atención */}
+            <div className="mt-12 p-6 bg-transparent-800 rounded-lg shadow-xl border border-transparent">
+              <h2 className="text-2xl font-bold mb-6 text-red-400">Horarios de atención</h2>
+              <div className="space-y-3 text-lg">
+                <div className="flex justify-between items-center text-gray-300">
+                  <span className="font-semibold">Lunes - Viernes:</span>
+                  <span className="text-red-300">10:00 - 18:00 HS</span>
+                </div>
+                <div className="flex justify-between items-center text-gray-300">
+                  <span className="font-semibold">Sábado:</span>
+                  <span className="text-red-300">12:00 - 16:00 HS</span>
+                </div>
+                <div className="flex justify-between items-center text-gray-300">
+                  <span className="font-semibold">Domingo:</span>
+                  <span className="text-red-300">Cerrado (¡Preparando la próxima!)</span>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-8">
-            <h2 className="text-2xl font-bold mb-6">Horarios</h2>
-            <div className="space-y-2">
-              <div className="flex justify-between">
-                <span>Lunes - Viernes:</span>
-                <span>10:00 - 18:00</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Sábado:</span>
-                <span>12:00 - 16:00</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Domingo:</span>
-                <span>Cerrado</span>
-              </div>
-            </div>
+          {/* Formulario de Contacto */}
+          <div>
+            <h2 className="text-3xl font-bold mb-8 text-red-400 border-b-2 border-red-500 pb-2 inline-block">
+              Dejanos tu Mensaje
+            </h2>
+            <ContactForm />
           </div>
         </div>
 
-        <ContactForm />
-      </div>
+        {/* Sección de Preguntas Frecuentes */}
+        <div className="mt-24">
+          <h2 className="text-4xl font-extrabold text-center mb-12 bg-clip-text text-red-500 drop-shadow-lg">
+            Preguntas Frecuentes
+          </h2>
+          <div className="max-w-4xl mx-auto space-y-6">
+            {faqs.map((faq, index) => (
+              <FAQItem key={index} question={faq.question} answer={faq.answer} />
+            ))}
+          </div>
+        </div>
 
-      <div className="mt-16">
-        <h2 className="text-2xl font-bold mb-6 text-center">Ubicación de nuestra proxima fiesta</h2>
-        <div className="aspect-[16/9] w-full rounded-lg overflow-hidden">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12140.766594903964!2d-3.7037974!3d40.4167754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422997800a3c81%3A0xc436dec1618c2269!2sMadrid%2C%20Espa%C3%B1a!5e0!3m2!1ses!2ses!4v1654789542873!5m2!1ses!2ses"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
+        {/* Sección de Ubicación de la Próxima Fiesta (sin widget de Google Maps) */}
+        <div className="mt-24 text-center">
+          <h2 className="text-4xl font-extrabold mb-8 bg-clip-text text-red-500 drop-shadow-lg">
+            ¿Dónde es la Próxima Fiesta?
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Encontra nuestras proximas fiestas en la seccion de <strong className="text-red-400">'Proximos Eventos'</strong> de nuestra web o en nuestras redes sociales. <strong className="text-red-400"> ¡Prepárate para irte al Gare7e! </strong>
+          </p>
         </div>
       </div>
     </div>
-  )
-  
+  );
 }

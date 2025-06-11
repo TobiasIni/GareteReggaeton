@@ -43,7 +43,7 @@ export function ContactForm() {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-white">Nombre</Label>
+              <Label htmlFor="name" className="text-red-500">Nombre</Label>
               <Input 
                 id="name" 
                 name="name" 
@@ -52,7 +52,7 @@ export function ContactForm() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-white">Email</Label>
+              <Label htmlFor="email" className="text-red-500">Email</Label>
               <Input 
                 id="email" 
                 name="email" 
@@ -63,7 +63,7 @@ export function ContactForm() {
             </div>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="subject" className="text-white">Asunto</Label>
+            <Label htmlFor="subject" className="text-red-500">Asunto</Label>
             <Input 
               id="subject" 
               name="subject" 
@@ -72,7 +72,7 @@ export function ContactForm() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="message" className="text-white">Mensaje</Label>
+            <Label htmlFor="message" className="text-red-500">Mensaje</Label>
             <Textarea 
               id="message" 
               name="message" 

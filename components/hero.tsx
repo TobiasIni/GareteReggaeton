@@ -37,7 +37,7 @@ export function Hero() {
 
             <Link 
               href="/galeria"
-              className="inline-flex items-center justify-center w-full px-6 py-4 text-base font-bold text-white bg-black border border-white rounded-full shadow-lg hover:bg-zinc-900 transition-all duration-300"
+              className="inline-flex items-center justify-center w-full px-6 py-4 text-base font-bold text-white bg-black border border-red rounded-full shadow-lg hover:bg-zinc-900 transition-all duration-300"
             >
               <ImageIcon className="w-6 h-6 mr-3" />
               Ver Galería
