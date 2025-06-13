@@ -23,7 +23,7 @@ export default async function Home() {
             </h2>
             <div className="w-32 h-1 bg-gradient-to-r from-red-500 to-red-700 mx-auto rounded-full shadow-lg shadow-red-500/50"></div>
             <p className="text-gray-300 text-lg mt-6 max-w-2xl mx-auto">
-              Descubre los eventos más emocionantes que tenemos preparados para ti
+              No te duermas, sacá tu entrada
             </p>
           </div>
           
