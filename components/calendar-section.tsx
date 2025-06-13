@@ -22,8 +22,14 @@ const EventsCalendar = ({
 }: EventsCalendarProps) => {
   const [events, setEvents] = useState<Event[]>([])
   const [loading, setLoading] = useState(true)
+  const [mounted, setMounted] = useState(false)
   const [currentScrollIndex, setCurrentScrollIndex] = useState(0)
   const carouselRef = useRef<HTMLDivElement>(null)
+
+  // Fix hydration issues
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   // Function to fetch events from Supabase
   const fetchEvents = async () => {
@@ -51,8 +57,10 @@ const EventsCalendar = ({
   }
 
   useEffect(() => {
-    fetchEvents()
-  }, [])
+    if (mounted) {
+      fetchEvents()
+    }
+  }, [mounted])
 
   // Usar la fecha actual real en lugar de una fecha fija
   const today = new Date()
@@ -107,16 +115,45 @@ const EventsCalendar = ({
   useEffect(() => {
     const updateWidth = () => {
       if (carouselRef.current) {
-        setCarouselWidth(carouselRef.current.offsetWidth)
+        const width = carouselRef.current.offsetWidth
+        if (width > 0) {
+          setCarouselWidth(width)
+        }
       }
     }
-    updateWidth() // Set initial width
-    window.addEventListener('resize', updateWidth) // Update on resize
-    return () => window.removeEventListener('resize', updateWidth)
-  }, [])
+
+    // Multiple attempts to ensure width is calculated
+    const timeouts: NodeJS.Timeout[] = []
+    
+    if (mounted) {
+      // Immediate calculation
+      updateWidth()
+      
+      // Delayed calculations to ensure DOM is ready
+      timeouts.push(setTimeout(updateWidth, 100))
+      timeouts.push(setTimeout(updateWidth, 300))
+      timeouts.push(setTimeout(updateWidth, 500))
+      
+      // Debug logs
+      console.log('EventsCalendar mounted, carousel ref:', !!carouselRef.current)
+      console.log('Initial carousel width:', carouselWidth)
+    }
+
+    // Resize listener
+    const handleResize = () => {
+      updateWidth()
+    }
+
+    window.addEventListener('resize', handleResize)
+    
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      timeouts.forEach(timeout => clearTimeout(timeout))
+    }
+  }, [mounted])
 
   // Calculate actual card width for rendering and scrolling
-  const calculatedCardWidth = carouselWidth > 0 ? (carouselWidth * CARD_FRACTION) - (GAP_PX * (1 - CARD_FRACTION)) : 0
+  const calculatedCardWidth = carouselWidth > 0 ? (carouselWidth * CARD_FRACTION) - (GAP_PX * (1 - CARD_FRACTION)) : 300 // fallback width
   const fullCardScrollAmount = calculatedCardWidth + GAP_PX // Full amount to scroll for one card including gap
 
   useEffect(() => {
@@ -179,6 +216,11 @@ const EventsCalendar = ({
   // Check if we can scroll in each direction
   const canScrollLeft = currentScrollIndex > 0
   const canScrollRight = currentScrollIndex < sortedEvents.length - 1
+
+  // Don't render until mounted to avoid hydration issues
+  if (!mounted) {
+    return null
+  }
 
   if (loading) {
     const containerClass = variant === 'home' 
