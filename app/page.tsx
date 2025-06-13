@@ -38,7 +38,7 @@ export default async function Home() {
         {/* Sección de Spotify con animación */}
         <div className="container mx-auto px-4 opacity-0 translate-y-10 animate-fade-in-up-delay">
           {/* Título de la sección */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent mb-6 title-glow">
               Nuestra Música
             </h2>

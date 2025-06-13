@@ -24,13 +24,9 @@ const SpotifySectionV3 = () => {
 
   return (
     <section className={`py-12 md:py-20 px-4 transition-all duration-1000 ${hasMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-extrabold text-center mb-12 bg-clip-text text-red-500">
-          Nuestra Playlist Oficial
-        </h2>
-
+      <div className="max-w-7xl mx-auto">
         {/* Contenedor principal para las dos columnas */}
-        <div className="flex flex-col lg:flex-row gap-12 items-stretch mb-12"> {/* Agregamos un margen inferior aquí */}
+        <div className="flex flex-col lg:flex-row gap-12 items-stretch mb-12">
           {/* Columna izquierda: Reproductor de Spotify */}
           <div className="w-full lg:w-1/2 space-y-8 transition-all duration-1000 delay-200">
             <div className="max-w-3xl mx-auto">
@@ -54,7 +50,7 @@ const SpotifySectionV3 = () => {
             <Card className="p-6 shadow-xl rounded-xl border border-gray-700/30 backdrop-blur-md bg-white/10 text-white text-center w-full max-w-sm lg:max-w-none">
               <div className="relative group w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden shadow-lg border-2 border-red-500 transform transition-transform duration-300 hover:scale-105">
                 <Image
-                  src="/dj.jpg" // Reemplaza con la imagen de tu DJ
+                  src="/dj.jpg"
                   alt="Foto del DJ"
                   fill
                   className="object-cover transition-all duration-300 group-hover:brightness-110 group-hover:saturate-150"
@@ -68,9 +64,9 @@ const SpotifySectionV3 = () => {
           </div>
         </div>
 
-        {/* Tarjeta del perfil de Spotify (nueva ubicación, ancho completo) */}
+        {/* Tarjeta del perfil de Spotify */}
         <div className="w-full flex justify-center transition-all duration-1000 delay-400">
-          <Card className="p-6 shadow-xl rounded-xl border border-gray-700/30 backdrop-blur-md bg-white/10 text-white text-center w-full max-w-2xl"> {/* max-w-2xl para un ancho controlable pero amplio */}
+          <Card className="p-6 shadow-xl rounded-xl border border-gray-700/30 backdrop-blur-md bg-white/10 text-white text-center w-full max-w-2xl">
             <ListMusic className="w-16 h-16 mx-auto mb-4 text-red-400" />
             <h3 className="text-3xl font-bold mb-2 text-red-400">Nuestro Perfil en Spotify</h3>
             <p className="text-white-300 leading-relaxed mb-4">
