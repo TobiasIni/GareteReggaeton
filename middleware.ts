@@ -1,50 +1,66 @@
-import { createClientSupabaseClient } from "@/lib/supabase"
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
 export async function middleware(req: NextRequest) {
+  console.log("Middleware ejecutándose para ruta:", req.nextUrl.pathname)
+  
+  // Crear una respuesta base
   const res = NextResponse.next()
-  const supabase = createClientSupabaseClient()
+  
+  // Crear cliente de Supabase con el middleware
+  const supabase = createMiddlewareClient({ req, res })
+  
+  // Obtener la URL actual
+  const requestUrl = new URL(req.url)
+  const pathname = requestUrl.pathname
+
+  // Si no es una ruta de admin, continuar sin cambios
+  if (!pathname.startsWith('/admin')) {
+    return res
+  }
 
   try {
+    console.log("Verificando sesión...")
     const { data: { session }, error } = await supabase.auth.getSession()
 
     if (error) {
       console.error("Error al verificar la sesión:", error.message)
-      return redirectToLogin(req)
+      return NextResponse.redirect(new URL('/admin/login', req.url))
     }
 
-    // Si no hay sesión y no estamos en la página de login, redirigir a login
-    if (!session && req.nextUrl.pathname.startsWith("/admin") && req.nextUrl.pathname !== "/admin/login") {
-      console.log("No hay sesión activa, redirigiendo a login")
-      return redirectToLogin(req)
+    console.log("Estado de la sesión:", session ? "Activa" : "Inactiva")
+    if (session) {
+      console.log("Detalles de la sesión:", {
+        user: session.user.email,
+        expires_at: session.expires_at
+      })
     }
 
-    // Si hay sesión y estamos en la página de login, redirigir al dashboard
-    if (session && req.nextUrl.pathname === "/admin/login") {
-      console.log("Sesión activa, redirigiendo al dashboard")
-      return redirectToDashboard(req)
+    // Si estamos en /admin/login y hay sesión, redirigir al dashboard
+    if (pathname === '/admin/login' && session) {
+      console.log("Redirigiendo al dashboard desde login...")
+      return NextResponse.redirect(new URL('/admin', req.url))
     }
 
+    // Si no hay sesión y no estamos en login, redirigir a login
+    if (!session && pathname !== '/admin/login') {
+      console.log("Redirigiendo a login...")
+      return NextResponse.redirect(new URL('/admin/login', req.url))
+    }
+
+    console.log("Continuando con la solicitud...")
     return res
   } catch (error) {
     console.error("Error en el middleware:", error)
-    return redirectToLogin(req)
+    return NextResponse.redirect(new URL('/admin/login', req.url))
   }
 }
 
-function redirectToLogin(req: NextRequest) {
-  const redirectUrl = req.nextUrl.clone()
-  redirectUrl.pathname = "/admin/login"
-  return NextResponse.redirect(redirectUrl)
-}
-
-function redirectToDashboard(req: NextRequest) {
-  const redirectUrl = req.nextUrl.clone()
-  redirectUrl.pathname = "/admin"
-  return NextResponse.redirect(redirectUrl)
-}
-
+// Configurar el matcher para que solo se ejecute en rutas de admin
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: [
+    '/admin/:path*',
+    '/admin/login'
+  ]
 } 

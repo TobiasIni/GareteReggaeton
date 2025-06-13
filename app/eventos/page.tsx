@@ -11,42 +11,10 @@ export default async function EventsPage() {
   return (
     <div className="container mx-auto px-4 py-16">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4 text-white">Próximos Eventos</h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto text-white">
-          Nuestras fiestas
-        </p>
       </div>
-
-      {events.length > 0 ? (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {events.map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
-        </div>
-      ) : (
-        <div className="text-center py-12">
-          <p className="text-muted-foreground">
-            No hay eventos programados actualmente. Vuelve pronto para ver nuestras próximas fechas.
-          </p>
-        </div>
-      )}
-
-      <div className="section-spacing">
-        <span className="text-2xl font-bold text-white">Opcion 1 Eventos</span>
-        <EventsCalendar />
-      </div>
-
-      <div className="section-spacing grid grid-cols-1 md:grid-cols-2 gap-6">
-        <span className="text-2xl font-bold">Opcion 2 Eventos</span>
-        <Separator className="section-spacing"/>
-        <EventCard2 />
-        <EventCard2 />
-      </div>
-
-      <div className="section-spacing">
-        <span className="text-2xl font-bold">Opcion 3 Calendario</span>
-        <EventsCalendar2 />
-      </div>
+      
+      <EventsCalendar />
+      <EventsCalendar2 />
     </div>
   )
 }

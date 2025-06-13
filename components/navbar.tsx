@@ -57,11 +57,8 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8 text-white font-semibold"> {/* Increased spacing */}
-          <Link href="/quienes-somos" className="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 after:transition-all after:duration-300 hover:after:w-full hover:text-red-600 py-1">
-            Quiénes somos
-          </Link>
           <Link href="/quienes-somos-2" className="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 after:transition-all after:duration-300 hover:after:w-full hover:text-red-600 py-1">
-            Quiénes somos 2
+            Quiénes somos
           </Link>
           <Link href="/eventos" className="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-red-600 after:transition-all after:duration-300 hover:after:w-full hover:text-red-600 py-1">
             Próximos eventos

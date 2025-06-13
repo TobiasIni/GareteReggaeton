@@ -127,8 +127,8 @@ const EventsCalendar2 = () => {
   }, [events, today]);
 
   // Define card dimensions and gap based on 1/3 screen width
-  const CARD_FRACTION = 1 / 3; // For 1/3 of the screen width
-  const GAP_PX = 24; // Equivalent to Tailwind's gap-6
+  const CARD_FRACTION = 1 / 2; // For 1/3 of the screen width
+  const GAP_PX = 12; // Equivalent to Tailwind's gap-6
 
   // Use a state to store carousel width to calculate dynamic card width
   const [carouselWidth, setCarouselWidth] = useState(0);
@@ -180,53 +180,55 @@ const EventsCalendar2 = () => {
 
   if (!events || events.length === 0) {
     return (
-      <div className="text-center py-8">
-        <p className="text-muted-foreground">No hay eventos programados en este momento.</p>
+      <div className="carousel-container">
+        <div className="text-center py-8">
+          <p className="text-white">No hay eventos programados en este momento.</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="relative w-full px-4 md:px-8 lg:px-16 xl:px-20">
-      <div className="mb-8 text-center">
-        <h2 className="text-3xl font-bold mb-2 text-white">Próximos Eventos</h2>
-        <p className="text-muted-foreground text-white">Descubre nuestras próximas fiestas y asegura tu entrada</p>
+    <div className="carousel-container">
+      <div className="carousel-title text-red-600">Nuestros Eventos</div>
+      <div className="carousel-subtitle">Revive la mejor música y únete a la fiesta</div>
+      
+      <div className="relative w-full">
+        <button
+          onClick={() => scroll('left')}
+          className="absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/80 p-2 shadow-lg backdrop-blur-sm transition-all hover:bg-background/90"
+          aria-label="Scroll left"
+        >
+          <ChevronLeft className="h-6 w-6" />
+        </button>
+
+        <div
+          ref={carouselRef}
+          className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-6 scrollbar-hide px-12"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {sortedEvents.map((event) => {
+            const isPastEvent = new Date(event.date) < today;
+            return (
+              <div
+                key={event.id}
+                className="flex-none snap-start transition-all duration-300"
+                style={{ width: `${calculatedCardWidth}px` }}
+              >
+                <EventCard2 event={event} isPastEvent={isPastEvent} />
+              </div>
+            );
+          })}
+        </div>
+
+        <button
+          onClick={() => scroll('right')}
+          className="absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/80 p-2 shadow-lg backdrop-blur-sm transition-all hover:bg-background/90"
+          aria-label="Scroll right"
+        >
+          <ChevronRight className="h-6 w-6" />
+        </button>
       </div>
-
-      <button
-        onClick={() => scroll('left')}
-        className="absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/80 p-2 shadow-lg backdrop-blur-sm transition-all hover:bg-background/90"
-        aria-label="Scroll left"
-      >
-        <ChevronLeft className="h-6 w-6" />
-      </button>
-
-      <div
-        ref={carouselRef}
-        className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-6 scrollbar-hide"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-      >
-        {sortedEvents.map((event) => {
-          const isPastEvent = new Date(event.date) < today;
-          return (
-            <div
-              key={event.id}
-              className="flex-none snap-start transition-all duration-300"
-              style={{ width: `${calculatedCardWidth}px` }}
-            >
-              <EventCard2 event={event} isPastEvent={isPastEvent} />
-            </div>
-          );
-        })}
-      </div>
-
-      <button
-        onClick={() => scroll('right')}
-        className="absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/80 p-2 shadow-lg backdrop-blur-sm transition-all hover:bg-background/90"
-        aria-label="Scroll right"
-      >
-        <ChevronRight className="h-6 w-6" />
-      </button>
     </div>
   );
 };

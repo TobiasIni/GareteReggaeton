@@ -12,7 +12,7 @@ export interface Event {
 }
 
 export interface GalleryImage {
-  id: number
+  id: string
   title: string | null
   image_url: string
   alt_text: string | null

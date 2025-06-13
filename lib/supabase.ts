@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js"
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 // Crear cliente de Supabase para el lado del servidor
 export const createServerSupabaseClient = () => {
@@ -6,12 +7,6 @@ export const createServerSupabaseClient = () => {
 }
 
 // Crear cliente de Supabase para el lado del cliente
-let clientSupabaseClient: ReturnType<typeof createClient> | null = null
-
 export const createClientSupabaseClient = () => {
-  if (clientSupabaseClient) return clientSupabaseClient
-
-  clientSupabaseClient = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
-
-  return clientSupabaseClient
+  return createClientComponentClient()
 }

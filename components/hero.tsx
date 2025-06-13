@@ -13,7 +13,7 @@ export function Hero() {
         playsInline // Important for autoplay on mobile devices
         className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover transform -translate-x-1/2 -translate-y-1/2 z-0"
       >
-        <source src="/videoplayback.mp4" type="video/mp4" />
+        <source src="/Laundry.mp4" type="video/mp4" />
         Tu navegador no soporta la reproducción de video.
       </video>
 
@@ -37,7 +37,7 @@ export function Hero() {
 
             <Link 
               href="/galeria"
-              className="inline-flex items-center justify-center w-full px-6 py-4 text-base font-bold text-white bg-black border border-red rounded-full shadow-lg hover:bg-zinc-900 transition-all duration-300"
+              className="inline-flex items-center justify-center w-full px-6 py-4 text-base font-bold text-white bg-black border border-white rounded-full shadow-lg hover:bg-zinc-900 transition-all duration-300"
             >
               <ImageIcon className="w-6 h-6 mr-3" />
               Ver Galería

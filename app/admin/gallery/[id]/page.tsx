@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, use } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
@@ -9,20 +9,24 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { ArrowLeft, Calendar, MapPin } from "lucide-react"
 import { createClientSupabaseClient } from "@/lib/supabase"
-import type { GalleryImage } from "@/lib/types"
+import type { GalleryImage, Event } from "@/lib/types"
 
 interface EditImagePageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export default function EditImagePage({ params }: EditImagePageProps) {
   const router = useRouter()
+  const resolvedParams = use(params)
 
   const [image, setImage] = useState<GalleryImage | null>(null)
+  const [events, setEvents] = useState<Event[]>([])
+  const [selectedEventId, setSelectedEventId] = useState<string>("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -30,34 +34,35 @@ export default function EditImagePage({ params }: EditImagePageProps) {
 
   // Redirigir si el parámetro es "new" (esto debería manejarse por la ruta estática)
   useEffect(() => {
-    if (params.id === "new") {
+    if (resolvedParams.id === "new") {
       router.push("/admin/gallery/new")
       return
     }
 
-    // Validar que el ID sea un número válido
-    const imageId = Number.parseInt(params.id)
-    const isValidId = !isNaN(imageId) && imageId > 0
+    async function loadData() {
+      try {
+        const supabase = createClientSupabaseClient()
+        
+        // Cargar imagen y eventos en paralelo
+        const [imageResult, eventsResult] = await Promise.all([
+          supabase.from("gallery").select("*").eq("id", resolvedParams.id).single(),
+          supabase.from("events").select("*").order("date", { ascending: false })
+        ])
 
-    async function loadImage() {
-      if (isValidId) {
-        try {
-          const supabase = createClientSupabaseClient()
-          const { data, error } = await supabase.from("gallery_images").select("*").eq("id", imageId).single()
+        if (imageResult.error) throw imageResult.error
+        if (eventsResult.error) throw eventsResult.error
 
-          if (error) throw error
-          setImage(data)
-        } catch (err) {
-          setError("Error al cargar la imagen")
-        } finally {
-          setLoading(false)
-        }
-      } else {
+        setImage(imageResult.data)
+        setEvents(eventsResult.data || [])
+        setSelectedEventId(imageResult.data.event_id?.toString() || "none")
+      } catch (err) {
+        setError("Error al cargar la información")
+      } finally {
         setLoading(false)
       }
     }
-    loadImage()
-  }, [params.id, router])
+    loadData()
+  }, [resolvedParams.id, router])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -74,10 +79,10 @@ export default function EditImagePage({ params }: EditImagePageProps) {
         title: formData.get("title") as string,
         image_url: formData.get("image_url") as string,
         alt_text: formData.get("alt_text") as string,
-        event_id: formData.get("event_id") ? Number.parseInt(formData.get("event_id") as string) : null,
+        event_id: selectedEventId === "none" ? null : Number.parseInt(selectedEventId),
       }
 
-      const { error } = await supabase.from("gallery_images").update(imageData).eq("id", Number.parseInt(params.id))
+      const { error } = await supabase.from("gallery").update(imageData).eq("id", resolvedParams.id)
 
       if (error) throw error
 
@@ -99,7 +104,7 @@ export default function EditImagePage({ params }: EditImagePageProps) {
 
     try {
       const supabase = createClientSupabaseClient()
-      const { error } = await supabase.from("gallery_images").delete().eq("id", Number.parseInt(params.id))
+      const { error } = await supabase.from("gallery").delete().eq("id", resolvedParams.id)
 
       if (error) throw error
 
@@ -113,8 +118,7 @@ export default function EditImagePage({ params }: EditImagePageProps) {
     }
   }
 
-  const imageId = Number.parseInt(params.id)
-  const isValidId = !isNaN(imageId) && imageId > 0
+  const isValidId = resolvedParams.id !== "new" && resolvedParams.id.trim() !== ""
 
   if (!isValidId) {
     return (
@@ -125,7 +129,7 @@ export default function EditImagePage({ params }: EditImagePageProps) {
         </Link>
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">ID de imagen inválido</h1>
-          <p className="text-muted-foreground">El ID de la imagen debe ser un número válido.</p>
+          <p className="text-muted-foreground">El ID de la imagen no es válido.</p>
         </div>
       </div>
     )
@@ -210,14 +214,38 @@ export default function EditImagePage({ params }: EditImagePageProps) {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="event_id">ID del Evento (Opcional)</Label>
-                <Input
-                  id="event_id"
-                  name="event_id"
-                  type="number"
-                  placeholder="Asociar con un evento específico"
-                  defaultValue={image.event_id || ""}
-                />
+                <Label htmlFor="event_id">Evento</Label>
+                <Select value={selectedEventId} onValueChange={setSelectedEventId}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecciona un evento (opcional)" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="none">Sin asignar a evento</SelectItem>
+                    {events.map((event) => {
+                      const eventDate = new Date(event.date)
+                      return (
+                        <SelectItem key={event.id} value={event.id.toString()}>
+                          <div className="flex items-center gap-2">
+                            <Calendar className="h-4 w-4" />
+                            <span className="font-medium">{event.title}</span>
+                            <span className="text-sm text-muted-foreground">
+                              ({eventDate.toLocaleDateString("es-ES")})
+                            </span>
+                            {event.location && (
+                              <>
+                                <MapPin className="h-3 w-3" />
+                                <span className="text-xs text-muted-foreground">{event.location}</span>
+                              </>
+                            )}
+                          </div>
+                        </SelectItem>
+                      )
+                    })}
+                  </SelectContent>
+                </Select>
+                <p className="text-sm text-muted-foreground">
+                  Selecciona el evento al que pertenece esta imagen.
+                </p>
               </div>
 
               {error && <div className="text-destructive text-sm">{error}</div>}

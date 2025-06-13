@@ -1,20 +1,44 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { ArrowLeft, Calendar, MapPin } from "lucide-react"
 import { addGalleryImage } from "@/lib/actions"
+import { createClientSupabaseClient } from "@/lib/supabase"
+import type { Event } from "@/lib/types"
 
 export default function NewImagePage() {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [events, setEvents] = useState<Event[]>([])
+  const [selectedEventId, setSelectedEventId] = useState<string>("none")
+
+  // Cargar eventos disponibles
+  useEffect(() => {
+    async function loadEvents() {
+      try {
+        const supabase = createClientSupabaseClient()
+        const { data, error } = await supabase
+          .from("events")
+          .select("*")
+          .order("date", { ascending: false })
+
+        if (error) throw error
+        setEvents(data || [])
+      } catch (err) {
+        console.error("Error loading events:", err)
+      }
+    }
+    loadEvents()
+  }, [])
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -28,7 +52,7 @@ export default function NewImagePage() {
         title: formData.get("title") as string,
         image_url: formData.get("image_url") as string,
         alt_text: formData.get("alt_text") as string,
-        event_id: formData.get("event_id") ? Number.parseInt(formData.get("event_id") as string) : null,
+        event_id: selectedEventId === "none" ? null : Number.parseInt(selectedEventId),
       }
 
       await addGalleryImage(imageData)
@@ -77,10 +101,37 @@ export default function NewImagePage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="event_id">ID del Evento (Opcional)</Label>
-              <Input id="event_id" name="event_id" type="number" placeholder="Asociar con un evento específico" />
+              <Label htmlFor="event_id">Evento</Label>
+              <Select value={selectedEventId} onValueChange={setSelectedEventId}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Selecciona un evento (opcional)" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="none">Sin asignar a evento</SelectItem>
+                  {events.map((event) => {
+                    const eventDate = new Date(event.date)
+                    return (
+                      <SelectItem key={event.id} value={event.id.toString()}>
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4" />
+                          <span className="font-medium">{event.title}</span>
+                          <span className="text-sm text-muted-foreground">
+                            ({eventDate.toLocaleDateString("es-ES")})
+                          </span>
+                          {event.location && (
+                            <>
+                              <MapPin className="h-3 w-3" />
+                              <span className="text-xs text-muted-foreground">{event.location}</span>
+                            </>
+                          )}
+                        </div>
+                      </SelectItem>
+                    )
+                  })}
+                </SelectContent>
+              </Select>
               <p className="text-sm text-muted-foreground">
-                Si esta imagen pertenece a un evento específico, introduce su ID aquí.
+                Selecciona el evento al que pertenece esta imagen. Esto permitirá filtrar las fotos por fiesta en la galería.
               </p>
             </div>
 

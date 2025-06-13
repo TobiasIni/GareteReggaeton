@@ -1,46 +1,30 @@
-"use client"
+import type React from "react"
+import { Inter, Montserrat } from "next/font/google"
+import "../globals.css"
+import { ThemeProvider } from "@/components/theme-provider"
+import { AdminLayoutClient } from "@/app/admin/admin-layout-client"
 
-import { useRouter } from "next/navigation"
-import { createClientSupabaseClient } from "@/lib/supabase"
-import { Button } from "@/components/ui/button"
-import { toast } from "sonner"
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
+const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" })
+
+export const metadata = {
+  title: "Gare7e - Admin",
+  description: "Panel de administración de Gare7e",
+  generator: 'v0.dev'
+}
 
 export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const router = useRouter()
-
-  const handleLogout = async () => {
-    try {
-      const supabase = createClientSupabaseClient()
-      const { error } = await supabase.auth.signOut()
-      
-      if (error) throw error
-      
-      toast.success("Sesión cerrada exitosamente")
-      router.push("/admin/login")
-      router.refresh()
-    } catch (error) {
-      toast.error("Error al cerrar sesión")
-      console.error("Error:", error)
-    }
-  }
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-semibold text-gray-900">Panel de Administración</h1>
-          <Button variant="outline" onClick={handleLogout}>
-            Cerrar Sesión
-          </Button>
-        </div>
-      </header>
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {children}
-      </main>
-    </div>
+    <html lang="es" suppressHydrationWarning>
+      <body className={`${inter.variable} ${montserrat.variable} font-sans`}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          <AdminLayoutClient>{children}</AdminLayoutClient>
+        </ThemeProvider>
+      </body>
+    </html>
   )
 } 

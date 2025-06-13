@@ -10,7 +10,7 @@ export function SplashScreen() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false)
-    }, 3000)
+    }, 2000)
 
     return () => clearTimeout(timer)
   }, [])
@@ -19,22 +19,11 @@ export function SplashScreen() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
-      <div 
-        className="absolute inset-0"
-        style={{
-          backgroundImage: 'url(/replicada.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.8
-        }}
-      />
       <motion.div
         initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{
-          duration: 1,
-          repeat: Infinity,
-          repeatType: "reverse"
+          duration: 0.5
         }}
         className="relative z-10"
       >
@@ -44,6 +33,7 @@ export function SplashScreen() {
           width={300}
           height={300}
           className="object-contain"
+          priority
         />
       </motion.div>
     </div>

@@ -48,18 +48,18 @@ export default function NewEventPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-16">
-      <Link href="/admin/events" className="flex items-center text-muted-foreground hover:text-primary mb-8">
+    <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <Link href="/admin/events" className="flex items-center text-muted-foreground hover:text-primary mb-6">
         <ArrowLeft size={16} className="mr-2" />
         Volver a eventos
       </Link>
 
-      <Card>
+      <Card className="w-full">
         <CardHeader>
           <CardTitle>Nuevo Evento</CardTitle>
         </CardHeader>
         <form onSubmit={handleSubmit}>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-6">
             <div className="space-y-2">
               <Label htmlFor="title">Título *</Label>
               <Input id="title" name="title" required />
@@ -70,7 +70,7 @@ export default function NewEventPage() {
               <Textarea id="description" name="description" rows={5} />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="date">Fecha y Hora *</Label>
                 <Input id="date" name="date" type="datetime-local" required />
@@ -82,7 +82,7 @@ export default function NewEventPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="price">Precio (€)</Label>
                 <Input id="price" name="price" type="number" step="0.01" min="0" />

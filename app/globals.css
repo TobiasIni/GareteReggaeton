@@ -130,9 +130,72 @@ body {
 
 /* Footer con fondo semitransparente */
 .footer-glass {
-  backdrop-filter: blur(15px);
-  background: rgba(0, 0, 0, 0.9);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(0px);
+  background-image: url("/images/replicada.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+.calendar-glass {
+  backdrop-filter: blur(0px);
+  background-image: url("/images/replicada.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* Contenedor para carruseles con efecto glass */
+.carousel-container {
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.carousel-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+/* Título del contenedor de carrusel */
+.carousel-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Subtítulo del contenedor de carrusel */
+.carousel-subtitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.125rem;
+  font-weight: 400;
 }
 
 @keyframes visualizer-animation-0 {
@@ -173,4 +236,172 @@ body {
   50% { transform: scaleY(0.7); }
   75% { transform: scaleY(0.2); }
   100% { transform: scaleY(0.9); }
+}
+
+/* Estilos específicos para la galería de eventos */
+.event-gallery-container {
+  backdrop-filter: blur(15px);
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 3rem;
+  margin: 2rem 0;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.event-gallery-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.6), transparent);
+}
+
+.event-gallery-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.3), transparent);
+}
+
+/* Animaciones suaves para las transiciones de imágenes */
+.image-transition {
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efectos de hover para los controles */
+.gallery-control {
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gallery-control:hover {
+  backdrop-filter: blur(12px);
+  transform: scale(1.05);
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
+/* Indicadores de progreso personalizados */
+.progress-indicator {
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.progress-indicator.active {
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.4);
+}
+
+/* Estilos para la nueva galería con grid */
+.gallery-grid-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-grid-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.gallery-grid-item img {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-grid-item:hover img {
+  transform: scale(1.1);
+}
+
+/* Filtros de eventos */
+.event-filter-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.event-filter-button.active {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  color: white;
+  box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4);
+  border-color: rgba(220, 38, 38, 0.5);
+  transform: scale(1.05);
+}
+
+.event-filter-button:not(.active) {
+  background: rgba(0, 0, 0, 0.5);
+  color: #d1d5db;
+}
+
+.event-filter-button:not(.active):hover {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Overlay de información en hover */
+.image-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-grid-item:hover .image-overlay {
+  opacity: 1;
+}
+
+/* Animación de carga en hover */
+.loading-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .gallery-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
