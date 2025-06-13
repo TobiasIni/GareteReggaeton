@@ -405,3 +405,46 @@ body {
     grid-template-columns: repeat(5, 1fr);
   }
 }
+
+/* Animaciones de scroll para secciones */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-up-delay {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+.animate-fade-in-up-delay {
+  animation: fade-in-up-delay 0.8s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+/* Animación más suave para el título */
+.title-glow {
+  text-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+  transition: text-shadow 0.3s ease;
+}
+
+.title-glow:hover {
+  text-shadow: 0 0 30px rgba(239, 68, 68, 0.8);
+}

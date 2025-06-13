@@ -106,8 +106,8 @@ const EventsCalendar = ({
   }, [events, today])
 
   // Define card dimensions and gap based on variant
-  const CARD_FRACTION = variant === 'home' ? 0.5 : 1 / 2 // 70% del ancho para home, más estético
-  const GAP_PX = 24 // Equivalent to Tailwind's gap-6
+  const CARD_FRACTION = variant === 'home' ? 0.4 : 1 / 2 // Tamaño más armonioso para home
+  const GAP_PX = variant === 'home' ? 40 : 24 // Más espaciado entre cards en home
 
   // Use a state to store carousel width to calculate dynamic card width
   const [carouselWidth, setCarouselWidth] = useState(0)
@@ -277,7 +277,9 @@ const EventsCalendar = ({
 
         <div
           ref={carouselRef}
-          className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-6 scrollbar-hide px-12"
+          className={`flex w-full snap-x snap-mandatory overflow-x-auto pb-6 scrollbar-hide ${
+            variant === 'home' ? 'gap-10 px-16' : 'gap-6 px-12'
+          }`}
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {sortedEvents.map((event) => {
@@ -294,30 +296,30 @@ const EventsCalendar = ({
               >
                 {variant === 'home' ? (
                   // Diseño moderno para home
-                  <div className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-3xl shadow-2xl overflow-hidden border border-gray-700/50">
+                  <div className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-2xl shadow-xl overflow-hidden border border-gray-700/50">
                     {/* Imagen del evento */}
-                    <div className="relative h-64 w-full overflow-hidden">
+                    <div className="relative h-40 w-full overflow-hidden">
                       <Image
                         src={event.image_url || "/logoGarete.png"}
                         alt={event.title}
                         className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
                         width={Math.round(calculatedCardWidth)}
-                        height={256}
+                        height={160}
                         priority
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                       {isPastEvent && (
-                        <span className="absolute top-4 right-4 rounded-full bg-red-600 px-4 py-2 text-sm font-bold uppercase text-white shadow-lg">
+                        <span className="absolute top-3 right-3 rounded-full bg-red-600 px-3 py-1 text-xs font-bold uppercase text-white shadow-lg">
                           Sold Out
                         </span>
                       )}
                     </div>
 
                     {/* Contenido del evento */}
-                    <div className="p-8 space-y-6">
+                    <div className="p-4 space-y-3">
                       {/* Fecha */}
                       <div className="text-center">
-                        <span className="text-lg font-medium text-gray-300">
+                        <span className="text-sm font-medium text-gray-300">
                           {eventDate.toLocaleDateString("es-ES", {
                             day: "numeric",
                             month: "long",
@@ -328,22 +330,22 @@ const EventsCalendar = ({
 
                       {/* Título con color rojo metálico */}
                       <div className="text-center">
-                        <h3 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent transition-all duration-300 group-hover:from-red-400 group-hover:via-red-500 group-hover:to-red-600">
+                        <h3 className="text-xl font-bold tracking-tight bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent transition-all duration-300 group-hover:from-red-400 group-hover:via-red-500 group-hover:to-red-600">
                           {event.title}
                         </h3>
                         {event.description && (
-                          <p className="mt-3 text-gray-400 text-center leading-relaxed">
+                          <p className="mt-1 text-gray-400 text-center leading-relaxed text-xs line-clamp-2">
                             {event.description}
                           </p>
                         )}
                       </div>
 
                       {/* Botones informativos */}
-                      <div className="flex flex-col gap-3">
+                      <div className="flex flex-col gap-2">
                         {/* Horario */}
-                        <div className="flex items-center justify-center gap-3 bg-gray-800/50 rounded-full px-6 py-3 border border-gray-700/50">
-                          <Clock className="h-5 w-5 text-red-500" />
-                          <span className="text-white font-medium">
+                        <div className="flex items-center justify-center gap-2 bg-gray-800/50 rounded-full px-4 py-1.5 border border-gray-700/50">
+                          <Clock className="h-3 w-3 text-red-500" />
+                          <span className="text-white font-medium text-xs">
                             {eventDate.toLocaleTimeString("es-ES", {
                               hour: "2-digit",
                               minute: "2-digit",
@@ -353,28 +355,28 @@ const EventsCalendar = ({
 
                         {/* Ubicación */}
                         {event.location && (
-                          <div className="flex items-center justify-center gap-3 bg-gray-800/50 rounded-full px-6 py-3 border border-gray-700/50">
-                            <MapPin className="h-5 w-5 text-red-500" />
-                            <span className="text-white font-medium">{event.location}</span>
+                          <div className="flex items-center justify-center gap-2 bg-gray-800/50 rounded-full px-4 py-1.5 border border-gray-700/50">
+                            <MapPin className="h-3 w-3 text-red-500" />
+                            <span className="text-white font-medium text-xs">{event.location}</span>
                           </div>
                         )}
                       </div>
 
                       {/* Botón de comprar entrada con animación bounce */}
-                      <div className="flex justify-center pt-4">
+                      <div className="flex justify-center pt-2">
                         {event.ticket_url ? (
                           <Link
                             href={event.ticket_url}
-                            className="group/btn inline-flex items-center gap-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-red-500/25 animate-bounce hover:animate-none"
+                            className="group/btn inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold px-6 py-2.5 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-red-500/25 animate-bounce hover:animate-none text-sm"
                             prefetch={false}
                           >
-                            <Ticket className="h-6 w-6 transition-transform group-hover/btn:rotate-12" />
-                            <span className="text-lg">Comprar Entrada</span>
+                            <Ticket className="h-4 w-4 transition-transform group-hover/btn:rotate-12" />
+                            <span>Comprar Entrada</span>
                           </Link>
                         ) : (
-                          <div className="inline-flex items-center gap-3 bg-gray-600 text-white font-bold px-8 py-4 rounded-full cursor-not-allowed opacity-75">
-                            <Ticket className="h-6 w-6" />
-                            <span className="text-lg">Sin entradas disponibles</span>
+                          <div className="inline-flex items-center gap-2 bg-gray-600 text-white font-bold px-6 py-2.5 rounded-full cursor-not-allowed opacity-75 text-sm">
+                            <Ticket className="h-4 w-4" />
+                            <span>Sin entradas disponibles</span>
                           </div>
                         )}
                       </div>
