@@ -367,7 +367,7 @@ const EventsCalendar = ({
                         {event.ticket_url ? (
                           <Link
                             href={event.ticket_url}
-                            className="group/btn inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold px-6 py-2.5 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-red-500/25 animate-bounce hover:animate-none text-sm"
+                            className="group/btn inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold px-6 py-2.5 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-red-500/25 slow hover:animate-none text-sm"
                             prefetch={false}
                           >
                             <Ticket className="h-4 w-4 transition-transform group-hover/btn:rotate-12" />

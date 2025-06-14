@@ -446,5 +446,21 @@ body {
 }
 
 .title-glow:hover {
-  text-shadow: 0 0 30px rgba(239, 68, 68, 0.8);
+  text-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+}
+
+/* Animación de rebote lenta personalizada */
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s infinite;
 }
